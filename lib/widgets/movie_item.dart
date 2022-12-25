@@ -42,7 +42,8 @@ class MovieItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.of(context).pushNamed(MovieDetailScreen.routeName);
+        Navigator.of(context)
+            .pushNamed(MovieDetailScreen.routeName, arguments: id);
       },
     );
   }
