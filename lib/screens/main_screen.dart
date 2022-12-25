@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/movie.dart';
 import 'package:http/http.dart' as http;
+import 'package:movies_app/widgets/movie_item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,10 +14,16 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Movie> _movies = [];
+  int _page = 1;
+  @override
+  void initState() {
+    super.initState();
+    populateMovies(_page);
+  }
 
-  Future<List<Movie>> _fetchMovies() async {
-    final response = await http
-        .get(Uri.parse('https://www.episodate.com/api/most-popular?page=1'));
+  Future<List<Movie>> _fetchMovies(int page) async {
+    final response = await http.get(
+        Uri.parse('https://www.episodate.com/api/most-popular?page=$page'));
     if (response.statusCode == 200) {
       final result = jsonDecode(response.body);
       Iterable list = result['tv_shows'];
@@ -26,22 +33,41 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  void populateMovies() async {
-    final myMovies = await _fetchMovies();
-    _movies.addAll(myMovies);
-    print(_movies[1].title);
+  void populateMovies(int page) async {
+    final myMovies = await _fetchMovies(page);
+    setState(() {
+      _movies.addAll(myMovies);
+    });
+    _page += 1;
+
+    print("populating " + page.toString());
   }
 
   @override
   Widget build(BuildContext context) {
-    populateMovies();
     return Scaffold(
       appBar: AppBar(
         title: Text('movie app'),
       ),
-      body: Center(
-        child: Text('main screen body'),
-      ),
+      body: _movies.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 3 / 4,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 30,
+              ),
+              itemBuilder: (ctx, i) => MovieItem(
+                _movies[i].id,
+                _movies[i].image,
+                _movies[i].title,
+              ),
+              itemCount: _movies.length,
+              padding: const EdgeInsets.all(10),
+            ),
     );
   }
 }
