@@ -45,6 +45,16 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _controller = ScrollController();
+    _controller.addListener(() {
+      if (_controller.offset >= _controller.position.maxScrollExtent &&
+          !_controller.position.outOfRange) {
+        setState(() {
+          populateMovies(_page);
+        });
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text('movie app'),
@@ -67,6 +77,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               itemCount: _movies.length,
               padding: const EdgeInsets.all(10),
+              controller: _controller,
             ),
     );
   }
