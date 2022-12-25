@@ -111,9 +111,46 @@ class MovieDetailScreen extends StatelessWidget {
                             ],
                           ),
                         SizedBox(height: 20),
+                        Text(
+                          'Release Date: ',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(_start.toString()),
+                        SizedBox(height: 10),
+                        Text(_status.toString()),
+                        SizedBox(height: 20),
                       ],
                     ),
                   ],
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Description',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        _decription,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          height: 1.5,
+                          wordSpacing: 1.5,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
