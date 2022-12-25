@@ -38,15 +38,88 @@ class MovieDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _movield = ModalRoute.of(context)!.settings.arguments.toString;
+    final _movield = ModalRoute.of(context)!.settings.arguments.toString();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('detail'),
-      ),
-      body: Center(
-        child: Text('detail screen content'),
-      ),
+    return FutureBuilder(
+      future: _fetchDetails(_movield),
+      builder: (context, data) {
+        while (_id == null) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(_title),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(
+                        left: 10,
+                        top: 10,
+                      ),
+                      width: 200,
+                      child: Image.network(
+                        _imageUrl,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.white,
+                            child: LayoutBuilder(
+                              builder: (context, constraint) {
+                                return Icon(
+                                  Icons.error_outline_sharp,
+                                  color: Colors.red,
+                                  size: constraint.biggest.width,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 50),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20),
+                        CircleAvatar(
+                          backgroundColor: Color(0xffffc400),
+                          child: Text(
+                            double.parse(_rating.toString()).toStringAsFixed(1),
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          'Genres; ',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        for (var i in _genres)
+                          Column(
+                            children: [
+                              Text(i.toString()),
+                              SizedBox(height: 10),
+                            ],
+                          ),
+                        SizedBox(height: 20),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
