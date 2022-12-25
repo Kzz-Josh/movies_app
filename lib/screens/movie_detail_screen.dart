@@ -94,15 +94,15 @@ class MovieDetailScreen extends StatelessWidget {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                         Text(
-                          'Genres; ',
+                          'Géneros; ',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.blue,
                           ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                         for (var i in _genres)
                           Column(
                             children: [
@@ -110,9 +110,16 @@ class MovieDetailScreen extends StatelessWidget {
                               SizedBox(height: 10),
                             ],
                           ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                         Text(
-                          'Release Date: ',
+                          'Fecha de',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        Text(
+                          'Lanzamiento: ',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.blue,
@@ -120,6 +127,14 @@ class MovieDetailScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         Text(_start.toString()),
+                        SizedBox(height: 10),
+                        Text(
+                          'Estado: ',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue,
+                          ),
+                        ),
                         SizedBox(height: 10),
                         Text(_status.toString()),
                         SizedBox(height: 20),
@@ -132,7 +147,7 @@ class MovieDetailScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Description',
+                        'Descripción',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.blue,

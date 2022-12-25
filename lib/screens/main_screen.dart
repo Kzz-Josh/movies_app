@@ -57,7 +57,10 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('movie app'),
+        title: Text(
+          'Movies App',
+          textAlign: TextAlign.center,
+        ),
       ),
       body: _movies.isEmpty
           ? const Center(
