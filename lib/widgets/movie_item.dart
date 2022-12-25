@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/movie_detail_screen.dart';
 
 class MovieItem extends StatelessWidget {
   final int id;
@@ -40,7 +41,9 @@ class MovieItem extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(MovieDetailScreen.routeName);
+      },
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/screens/main_screen.dart';
+import 'package:movies_app/screens/movie_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MainScreen(),
+      routes: {
+        MovieDetailScreen.routeName: (ctx) => MovieDetailScreen(),
+      },
     );
   }
 }
