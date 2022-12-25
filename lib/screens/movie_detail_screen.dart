@@ -147,7 +147,7 @@ class MovieDetailScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Descripción',
+                        'Resumen',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.blue,
