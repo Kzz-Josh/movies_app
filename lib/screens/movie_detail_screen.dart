@@ -50,6 +50,7 @@ class MovieDetailScreen extends StatelessWidget {
         }
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.black,
             title: Text(_title),
           ),
           body: SingleChildScrollView(

@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
     });
     _page += 1;
 
-    print("populating " + page.toString());
+    print("page " + page.toString());
   }
 
   @override
@@ -57,6 +57,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: Text(
           'Movies App',
           textAlign: TextAlign.center,
